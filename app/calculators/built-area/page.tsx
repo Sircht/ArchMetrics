@@ -1,0 +1,2 @@
+import { BuiltAreaCalculator } from "@/features/calculators/built-area/built-area-calculator";
+export default function Page(){return <main className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8"><h1 className="font-display text-5xl font-bold text-gradient">Built Area Calculator</h1><p className="mt-4 text-muted">Model gross built area, footprints, floors, and site utilization.</p><div className="mt-10"><BuiltAreaCalculator /></div></main>}
