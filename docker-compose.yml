@@ -1,0 +1,47 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: archmetrics-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: archmetrics
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - archmetrics_postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d archmetrics"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  web:
+    build: .
+    container_name: archmetrics-web
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/archmetrics?schema=public
+      NEXTAUTH_URL: http://localhost:3000
+      NEXTAUTH_SECRET: local-development-secret-change-before-production
+      WAIT_FOR_POSTGRES: "1"
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: "5432"
+      PRISMA_DB_PUSH: "1"
+      PORT: "3000"
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - archmetrics_node_modules:/app/node_modules
+      - archmetrics_next:/app/.next
+    command: ./scripts/dev-local.sh
+
+volumes:
+  archmetrics_postgres:
+  archmetrics_node_modules:
+  archmetrics_next:
