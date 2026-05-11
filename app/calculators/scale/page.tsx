@@ -1,0 +1,2 @@
+import { ScaleConverter } from "@/features/calculators/scale/scale-converter";
+export default function Page(){return <main className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8"><h1 className="font-display text-5xl font-bold text-gradient">Scale Converter</h1><p className="mt-4 text-muted">Convert real and scaled measurements across common architectural scales.</p><div className="mt-10"><ScaleConverter /></div></main>}

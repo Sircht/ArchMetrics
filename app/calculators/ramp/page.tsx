@@ -1,0 +1,2 @@
+import { RampCalculator } from "@/features/calculators/ramp/ramp-calculator";
+export default function Page(){return <main className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8"><h1 className="font-display text-5xl font-bold text-gradient">Ramp Calculator</h1><p className="mt-4 text-muted">Calculate ramp length, slope percentage, landings, and accessibility status.</p><div className="mt-10"><RampCalculator /></div></main>}

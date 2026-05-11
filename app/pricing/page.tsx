@@ -1,0 +1,3 @@
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+export default function PricingPage(){return <main className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8"><h1 className="font-display text-5xl font-bold text-gradient">Pricing</h1><div className="mt-10 grid gap-4 md:grid-cols-3">{["Student","Studio","Enterprise"].map((plan,i)=><Card key={plan} className="p-6"><h2 className="font-display text-2xl font-semibold">{plan}</h2><p className="mt-4 text-4xl font-bold">{i===0?"$9":i===1?"$29":"Custom"}</p><p className="mt-3 text-muted">Premium calculators, saved history, and export workflows for {plan.toLowerCase()} teams.</p><Button className="mt-6 w-full">Choose {plan}</Button></Card>)}</div></main>}
